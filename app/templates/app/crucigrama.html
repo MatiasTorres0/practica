@@ -1,0 +1,80 @@
+{% extends 'app/base2.html' %}
+{% load static%}
+
+{% block css%}
+
+{% endblock %}
+
+{% block contenido %}
+<link rel="stylesheet" href="{% static 'app/css/fontawesome-all.min.css' %}">
+<link rel="stylesheet" href="{% static 'app/css/crucigrama.css' %}">
+
+<div class="container crosswordDisplay">
+  
+  <div class="row">
+    <div class="alinear">
+      <div class="btn btn-default" id="btnCreate">Ver respuestas</div>
+      <div class="btn btn-default" id="btnPlay">Jugar</div>
+      <div class="btn" id="btnGen" style="display: none;">Generar</div>
+      <div class="btn btn-default" id="btnReset">Reiniciar</div>
+        <div class="btn btn-default" id="btnCheck">Verificar respuestas</div>
+    </div>
+  
+    <div class="center crossword" id="crossword"></div>
+    
+    <div class="col-lg-6 ">
+    <div class="clueBlock" id="cluesAcross">
+      <div class="clueDirection" id="directionAcross">Horizontal</div>
+      
+      </div>
+      <div>
+      
+      {% if request.user.is_authenticated %}
+        {% for t in Trivia %}
+            <div class="col-lg-6 ">
+            <div class="line">
+              <input class="word" type="text" value="{{t.respuesta_trivia}}"/>   
+              <span class="lineNum"></span>   
+              <input class="clue" value="{{ t.pregunta_trivia }}" />
+            <div/>
+            </div>
+        {% endfor %}
+        {% else %}
+        <div class="line">
+          <input class="word" type="text" value="Gabriel" />
+          <span class="lineNum"></span>
+          <input class="clue" value="¿Primer nombre de actual presidente chileno?"/>
+        </div>
+        <div class="line">
+          <input class="word" type="text" value="Cristobal"/>
+          <span class="lineNum"></span>
+          <input class="clue" value="¿Primer nombre de la persona que descubrió america?" />
+        </div>
+    
+        <div class="line">
+          <input class="word" type="text" value="Santiago"/>
+          <span class="lineNum"></span>
+          <input class="clue" value="Capital de chile" />
+        </div>
+      {% endif %}
+            </div>
+
+
+      
+      
+      
+    </div>
+    
+    
+    <div class="col-lg-6">
+    <div class="clueBlock" id="cluesDown">
+      <div class="clueDirection" id="directionDown">Vertical</div>
+    </div>
+  
+  </div>
+  </div>
+  
+  
+  
+  <script src="{% static 'app/js/crucigrama.js' %}"></script>
+  {% endblock %}

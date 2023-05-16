@@ -1,0 +1,36 @@
+{% extends 'app/base.html' %}
+{% load static%}
+{% block css %}
+{% endblock %}
+{% block contenido %}
+
+<body>
+    
+<!-- CSS only -->
+
+    {% load crispy_forms_tags %}
+        <div class="container">
+
+        <div class="col-4 col-12-medium" >
+            <div class="container">
+                <div class="box feature">
+                    <div class=""inner">
+                        <h2>Registro de usuario</h2>
+                        <hr>
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            {{ form | crispy }}
+                            <a href="{% url 'index' %}">volver al home</a>
+                            <a href="{% url 'login' %}">volver al login</a>
+                            <input class="btn btn-success float-right" type="submit" value="registrar">
+                        </form>
+                        {% csrf_token %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+{% endblock %}
+
